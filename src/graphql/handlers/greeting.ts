@@ -1,6 +1,6 @@
-export const me = ()=>{
+export const greet = ()=>{
 	return {
-		id: '1',
-		username: 'exampleUser',
+		id: 1,
+		msg: 'Welcome',
 	};
 };

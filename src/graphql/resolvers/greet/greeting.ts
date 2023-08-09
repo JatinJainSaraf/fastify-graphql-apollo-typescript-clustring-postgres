@@ -1,7 +1,7 @@
-import { me } from '../../handlers/greeting';
-export const greetResolver = {
-	Query: {
-		me: me
-	},
+export const createGreetResolver = (greet: () => { id: number; msg: string; }) => {
+	return {
+		Query: {
+			greet: greet
+		},
+	};
 };
-    

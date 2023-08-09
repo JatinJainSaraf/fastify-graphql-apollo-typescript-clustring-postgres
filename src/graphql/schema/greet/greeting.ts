@@ -1,11 +1,12 @@
-import gql from "graphql-tag";
-export const greetTypeDef = gql`
+import { DocumentNode } from 'graphql';
+
+export const createGreetTypeDef = (gql: (template: TemplateStringsArray) => DocumentNode) => gql`
   type Query {
-    me: User
+    greet: Greetings!
   }
 
-  type User {
+  type Greetings {
     id: ID!
-    username: String
+    msg: String
   }
 `;

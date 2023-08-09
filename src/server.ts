@@ -7,6 +7,7 @@ import resolvers from './graphql/resolvers';  // Assuming this is an array of tr
 import { fastifyApolloDrainPlugin } from '@as-integrations/fastify';
 import { buildSubgraphSchema } from '@apollo/subgraph';
 import { customDirectives } from './graphql/directives';
+
 export class Server {
 	app;
 	port;
@@ -39,6 +40,7 @@ export class Server {
 			const apollo = new ApolloServer<BaseContext>({
 				schema: buildSubgraphSchema([{ typeDefs, resolvers: customDirectives(resolvers) }]),
 				plugins: [fastifyApolloDrainPlugin(this.app)],
+				includeStacktraceInErrorResponses: true,
 			});
 			await apollo.start();
 
