@@ -30,6 +30,7 @@
     "fastify-guard": "^2.0.0",
     "graphql": "^16.7.1",
     "graphql-tag": "^2.12.6",
+    "pg": "^8.11.2",
     "pino": "^8.15.0",
     "sequelize": "^6.32.1"
   }

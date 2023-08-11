@@ -1,13 +1,22 @@
 import { DocumentNode } from 'graphql';
 
-export const createUserTypeDef = (gql: (template: TemplateStringsArray) => DocumentNode) => gql`
-  type Query {
-    getUsers: [User!]
+export const createCreateUserType = (gql: (template: TemplateStringsArray) => DocumentNode) => gql`
+  type Mutation {
+    createUser(input: CreateUserInput): CreatedUserResponse
   }
 
-  type User {
+  input CreateUserInput {
+    name: String!
+    email: String!
+    age: Int
+    password: String!
+  }
+
+  type CreatedUserResponse {
     id: ID!
     name: String!
-    age: Int!
+    email: String!
+    age: Int
+    password: String!
   }
 `;

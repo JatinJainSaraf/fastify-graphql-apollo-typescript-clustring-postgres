@@ -1,7 +1,9 @@
-export const createCreateUserResolver = (getUsers: () => { id: number; name: string; age: number }[]) => {
+import { UserAttributes, UserModelType } from '../../../data-access/models/user';
+type CreateUserResolver = (input: UserAttributes) => Promise<UserModelType>;
+export const createCreateUserResolver = (createUser:CreateUserResolver) => {
 	return {
-		Query: {
-			getUsers: getUsers
+		Mutation: {
+			createUser: createUser
 		},
 	};
 };

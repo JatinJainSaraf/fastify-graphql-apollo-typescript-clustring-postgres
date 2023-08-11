@@ -1,5 +1,15 @@
+import { createGetUserResolver } from './get-user-resolver';
 import { createCreateUserResolver } from './create-user-resolver';
-import { getUsers } from '../../handlers/users';
+import { getUsers, createUser } from '../../handlers';
 
-const createUserResolver = createCreateUserResolver(getUsers);
-export {createUserResolver};
+const getUserResolver =()=> createGetUserResolver(getUsers);
+const createUserResolver =()=> createCreateUserResolver(createUser);
+
+export const userResolver = {
+	Query: {
+		getUsers: getUserResolver, 
+	},
+	Mutation: {
+		createUser: createUserResolver(),
+	},
+};

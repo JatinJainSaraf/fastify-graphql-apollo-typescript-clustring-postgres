@@ -1,8 +1,10 @@
-import { createUserModel } from './user';
+import { createUserModel, UserInstance, UserModelType } from './user'; // Import the types
 import sequelize from '..';
-const userModel=createUserModel(sequelize);
-const models = [userModel];
 
-models.forEach((model)=>{
-	model.sync();
-});
+const UserModel: UserModelType = createUserModel(sequelize);
+
+UserModel.sync();
+
+export default UserModel;
+
+export { UserInstance };

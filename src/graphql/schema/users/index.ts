@@ -1,5 +1,10 @@
 import gql from '../../../shared/gql';
-import { createUserTypeDef } from './create-user-type';
+import { makeGetUserTypeDef } from './get-user-type';
+import { createCreateUserType } from './create-user-type';
 
-const userTypeDef = createUserTypeDef(gql);
-export { userTypeDef };
+const getUserTypeDef = makeGetUserTypeDef(gql);
+const createUserType = createCreateUserType(gql);
+
+const userTypeDefs = [getUserTypeDef, createUserType];
+
+export default userTypeDefs;

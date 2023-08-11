@@ -1,7 +1,7 @@
-import { DataTypes, Sequelize } from 'sequelize';
+import { Model, DataTypes, Sequelize } from 'sequelize';
 
-export const createUserModel = (sequelize: Sequelize)=>{
-	const UserModal =sequelize.define('user',{ 
+export const createUserModel = (sequelize: Sequelize) => {
+	const UserModel = sequelize.define('user', {
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
@@ -9,8 +9,8 @@ export const createUserModel = (sequelize: Sequelize)=>{
 			allowNull: false,
 		},
 		name: {
-			type:DataTypes.STRING,
-			allowNull : false,
+			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		email: {
 			type: DataTypes.STRING,
@@ -18,7 +18,7 @@ export const createUserModel = (sequelize: Sequelize)=>{
 		},
 		age: {
 			type: DataTypes.INTEGER,
-			allowNull:false,
+			allowNull: false,
 		},
 		password: {
 			type: DataTypes.STRING,
@@ -27,11 +27,31 @@ export const createUserModel = (sequelize: Sequelize)=>{
 		createdAt: {
 			type: DataTypes.DATE,
 			allowNull: false,
+			defaultValue: Sequelize.literal('NOW()'),
 		},
 		updatedAt: {
 			type: DataTypes.DATE,
 			allowNull: false,
 		},
 	});
-	return UserModal;
+
+	return UserModel as typeof UserModel & {
+    new (): UserInstance;
+  };
+};
+
+export interface UserAttributes {
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+  password: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export type UserInstance = Model<UserAttributes>;
+
+export type UserModelType = typeof Model & {
+  new (): UserInstance;
 };
